@@ -78,7 +78,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                  TextField(
                      controller: _emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Email',
                   ),
                 ),
