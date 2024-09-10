@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
 import 'package:task_manager/ui/state_managers/login_controller.dart';
+import 'package:task_manager/ui/state_managers/new_task_controller.dart';
+import 'package:task_manager/ui/state_managers/summary_count_controller.dart';
 class TaskManagerApp extends StatelessWidget {
 
   static GlobalKey<NavigatorState> globalKey=GlobalKey<NavigatorState>();
@@ -47,6 +49,8 @@ class ControllerBinding extends Bindings{
   @override
   void dependencies() {
     Get.put<LoginController>(LoginController());
+    Get.put<SummaryCountController>(SummaryCountController());
+    Get.put<NewTaskController>(NewTaskController());
   }
 
 }
