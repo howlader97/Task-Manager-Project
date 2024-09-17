@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/models/network_response.dart';
-import 'package:task_manager/data/models/summary_count_model.dart';
 import 'package:task_manager/data/models/task_list_model.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/ui/widgets/task_list_tile.dart';

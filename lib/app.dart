@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
 import 'package:task_manager/ui/state_managers/login_controller.dart';
 import 'package:task_manager/ui/state_managers/new_task_controller.dart';
+import 'package:task_manager/ui/state_managers/signup_controller.dart';
 import 'package:task_manager/ui/state_managers/summary_count_controller.dart';
 class TaskManagerApp extends StatelessWidget {
 
@@ -51,6 +52,7 @@ class ControllerBinding extends Bindings{
     Get.put<LoginController>(LoginController());
     Get.put<SummaryCountController>(SummaryCountController());
     Get.put<NewTaskController>(NewTaskController());
+    Get.put<SignUpController>(SignUpController());
   }
 
 }

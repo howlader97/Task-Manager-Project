@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utils/urls.dart';
+import 'package:task_manager/ui/state_managers/signup_controller.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -20,10 +23,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
    final TextEditingController _mobileTEController=TextEditingController();
    final TextEditingController _passwordTEController=TextEditingController();
 
-   bool _signUpInprogress=false;
+  // bool _signUpInProgress=false;
 
-   Future<void> userSignUp()async{
-     _signUpInprogress=true;
+  /* Future<void> userSignUp()async{
+     _signUpInProgress=true;
      if(mounted){
        setState(() {});
      }
@@ -35,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
          "password":_passwordTEController.text,
          "photo":""
      });
-     _signUpInprogress=false;
+     _signUpInProgress=false;
      if(mounted){
        setState(() {});
      }
@@ -55,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
              const SnackBar(content: Text('Registration Failed')));
        }
      }
-   }
+   }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,25 +156,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 8,
                 ),
-                SizedBox(
-                    width: double.infinity,
-                      child: Visibility(
-                        visible: _signUpInprogress==false,
-                        replacement: const Center(child: CircularProgressIndicator(),),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if(!_formKey.currentState!.validate()){
-                              return;
-                            }
-                            userSignUp();
-                          },
-                          child: const Icon(
-                            Icons.arrow_circle_right_rounded,
-                            color: Colors.white,
-                          )
+                GetBuilder<SignUpController>(
+                  builder: (signUpController) {
+                    return SizedBox(
+                        width: double.infinity,
+                          child: Visibility(
+                            visible:signUpController.signUpInProgress==false,
+                            replacement: const Center(child: CircularProgressIndicator(),),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if(!_formKey.currentState!.validate()){
+                                  return;
+                                }
+                                signUpController.userSignUp(
+                                    _emailTEController.text.trim(),
+                                    _firstNameController.text.trim(),
+                                    _lastNameTEController.text.trim(),
+                                    _mobileTEController.text.trim(),
+                                   _passwordTEController.text.trim()
+                                   ).then((result) => {
+                                     if(result == true){
+                                       Get.snackbar('Successful','Registration Successful')
+                                     }else{
+                                       Get.snackbar('Failed', 'Registration failed')
+                                     }
+                                });
+                              },
+                              child: const Icon(
+                                Icons.arrow_circle_right_rounded,
+                                color: Colors.white,
+                              )
 
-                                            ),
-                      )),
+                                                ),
+                          ));
+                  }
+                ),
                 const SizedBox(
                   height: 12,
                 ),
