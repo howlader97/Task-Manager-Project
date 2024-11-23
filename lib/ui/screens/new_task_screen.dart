@@ -132,6 +132,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                             return TaskListTile(
                               data: _newTaskController.taskListModel.data![index],
                               onDeleteTap: () {
+                                //deleteTask(_newTaskController.taskListModel.data![index].sId!);
                                 deleteTask(_newTaskController.taskListModel.data![index].sId!);
                               },
                               onEditTap: () {
