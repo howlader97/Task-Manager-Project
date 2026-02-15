@@ -1,6 +1,6 @@
 # task_manager
 
-A new Flutter project.
+<h1>A new Flutter project.</h1>
 
 ## Getting Started
 
